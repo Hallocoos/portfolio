@@ -8,7 +8,7 @@
             <div class="item" *ngFor="let project of $projects | async">
                 <img class="ui avatar image" src="{{ project.projectIconUrl }}">
                 <div class="content">
-                    <a class="header" href="{{ project.projectUrl }}">{{ project.projectName }}</a>
+                    <a class="header" href="{{ project.projectUrl }}" target=_blank>{{ project.projectName }}</a>
                 </div>
             </div>
         </div>

@@ -9,7 +9,7 @@
                 <label>
                     {{ formField.label }}
                     <input type="text" formControlName="{{ formField.formControlName }}"
-                        [placeholder]="formField.placeholder">
+                        [placeholder]="formField.placeholder" [(ngModel)]="formField.default">
                 </label>
             </div>
             <div *ngIf="!formModalInputs.isEditing">

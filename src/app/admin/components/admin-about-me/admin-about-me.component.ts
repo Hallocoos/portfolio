@@ -7,6 +7,7 @@ import { DataService } from '../../services/data.service';
 import { IProfile } from '../../interfaces/profile.interface';
 import { IFormFields } from '../../interfaces/form-fields.interface';
 import { IFormModal } from '../../interfaces/form-modal.interface';
+import { IAboutMeDefaults } from '../../interfaces/about-me-defaults';
 
 @Component({
   selector: 'app-admin-about-me',
@@ -20,6 +21,7 @@ export class AdminAboutMeComponent implements OnInit {
   $profile: Observable<any>;
   profileCollectionRef = this.dataService.createCollection('profile');
   private itemId: string;
+  data: IAboutMeDefaults;
 
   formFields: Array<IFormFields> = [
     {
@@ -54,13 +56,7 @@ export class AdminAboutMeComponent implements OnInit {
     }
   ];
 
-  formModalContent: IFormModal = {
-    title: 'Try editing your profile information',
-    buttonText: 'Edit profile',
-    isVisible: false,
-    isEditing: false,
-    formFields: this.formFields
-  };
+  formModalContent: IFormModal;
 
   constructor(
     private afStorage: AngularFireStorage,
@@ -69,6 +65,54 @@ export class AdminAboutMeComponent implements OnInit {
 
   ngOnInit() {
     this.$profile = this.dataService.getData(this.profileCollectionRef);
+    this.dataService.getData(this.profileCollectionRef).subscribe(val => {
+      this.data = val[0] as IAboutMeDefaults;
+      this.formFields = [
+        {
+          label: 'First Name',
+          formControlName: 'firstName',
+          placeholder: 'First Name',
+          default: this.data.firstName
+        },
+        {
+          label: 'Last Name',
+          formControlName: 'lastName',
+          placeholder: 'Last Name',
+          default: this.data.lastName
+        },
+        {
+          label: 'Job Title',
+          formControlName: 'jobTitle',
+          placeholder: 'Job Title',
+          default: this.data.jobTitle
+        },
+        {
+          label: 'Company Name',
+          formControlName: 'company',
+          placeholder: 'Company Name',
+          default: this.data.company
+        },
+        {
+          label: 'Start Year',
+          formControlName: 'startYear',
+          placeholder: 'Start Year',
+          default: this.data.startYear
+        },
+        {
+          label: 'About Me',
+          formControlName: 'aboutMe',
+          placeholder: 'About Me',
+          default: this.data.aboutMe
+        }
+      ];
+      this.formModalContent = {
+        title: 'Try editing your profile information',
+        buttonText: 'Edit profile',
+        isVisible: false,
+        isEditing: false,
+        formFields: this.formFields
+      }
+    });
   }
 
   public uploadImage(event, id: string) {
