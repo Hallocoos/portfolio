@@ -1,20 +1,29 @@
 <div class="ui menu">
-    <a class="ui item" [href]="resumeDownloadLink" target=_blank>
-        <div class="ui icon" data-tooltip="Download CV" data-position="bottom left">
-            <i class="download icon" style="color: #0073af"></i>
+    <div class="left menu">
+        <div class="ui icon centered" data-tooltip="My Name" data-position="bottom center">
+            <span style="font-size: '20';position: relative;top: 25%;transform: translateY(-50%);left: 10%;font-weight: bold;font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;">
+                Henricus Wouter de Vos
+            </span>
         </div>
-    </a>
+    </div>
 
     <div class="right menu">
         <a class="ui item" [href]="linkedinLink" target=_blank>
             <div class="ui icon" data-tooltip="View LinkedIn Page" data-position="bottom center">
-                <i class="linkedin in icon" style="color: #0073af"></i>
+                <i class="linkedin icon" style="color: #0073af"></i>
             </div>
         </a>
 
         <a class="ui item" [href]="githubLink" target=_blank>
             <div class="ui icon" data-tooltip="View GitHub Page" data-position="bottom center">
                 <i class="github icon" style="color: black"></i>
+            </div>
+        </a>
+
+        <a class="ui item" [href]="resumeDownloadLink" target=_blank>
+            <div class="ui icon" data-tooltip="Download CV" data-position="bottom left">
+                <i class="download icon" style="color: #0073af"></i>
+                Download CV
             </div>
         </a>
     </div>
